@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="app" target="21" />
+      <module name="app.main" target="21" />
+      <module name="app.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="app" options="-parameters" />
+      <module name="app.main" options="-parameters" />
+      <module name="app.test" options="-parameters" />
+      <module name="link-forge.app" options="-parameters" />
+      <module name="link-forge.app.main" options="-parameters" />
+      <module name="link-forge.app.test" options="-parameters" />
+    </option>
+  </component>
+</project>
