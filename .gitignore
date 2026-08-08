@@ -1,6 +1,5 @@
 .gradle
 **/build/
-!**/src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -19,3 +18,6 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# Kotlin
+.kotlin
