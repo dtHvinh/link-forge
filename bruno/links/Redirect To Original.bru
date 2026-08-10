@@ -1,0 +1,35 @@
+meta {
+  name: Redirect To Original
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/{{code}}
+  body: none
+  auth: none
+}
+
+settings {
+  followRedirects: false
+}
+
+docs {
+  Depends on {{code}}, which is set by "Create Short Link" (run that
+  first, or run the whole folder in order via the Bruno Runner).
+
+  If your Bruno version doesn't support the `followRedirects` setting
+  key above, open this request's Settings tab and turn off
+  "Follow redirects" manually, otherwise the client will chase the
+  Location header and you won't see the 302 here.
+}
+
+tests {
+  test("status is 302 Found", function () {
+    expect(res.getStatus()).to.equal(302);
+  });
+
+  test("Location header points back to the original link", function () {
+    expect(res.getHeader("location")).to.equal("https://example.com/some/very/long/path");
+  });
+}

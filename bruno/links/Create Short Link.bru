@@ -1,0 +1,40 @@
+meta {
+  name: Create Short Link
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/links
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "link": "https://example.com/some/very/long/path"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const shortLink = res.body.link;
+    const code = shortLink.substring(shortLink.lastIndexOf("/") + 1);
+    bru.setVar("code", code);
+  }
+}
+
+tests {
+  test("status is 200", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("response contains a shortened link", function () {
+    expect(res.body).to.have.property("link");
+    expect(res.body.link).to.match(/^https:\/\/lit\.by\/.+/);
+  });
+}

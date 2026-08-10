@@ -9,7 +9,6 @@ import org.springframework.http.ProblemDetail
 import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.web.util.InvalidUrlException
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -17,9 +16,9 @@ class GlobalExceptionHandler {
     private val log = LoggerFactory.getLogger(javaClass)
 
     @ExceptionHandler(LinkStorageException::class, DataAccessException::class)
-    fun handleStorageUnavailable(e: Exception, request: HttpServletRequest): ProblemDetail {
-        log.error("Storage failure on ${request.requestURI}", e)   // real cause goes to logs, not the client
-        return problem(HttpStatus.SERVICE_UNAVAILABLE, e, request, "Storage temporarily unavailable")
+    fun handleStorageUnavailable(e: LinkStorageException, request: HttpServletRequest): ProblemDetail {
+        log.error("Storage failure on ${request.requestURI}", e)
+        return problem(HttpStatus.SERVICE_UNAVAILABLE, e, request, e.message)
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)

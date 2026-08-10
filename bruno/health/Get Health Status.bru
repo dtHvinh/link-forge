@@ -1,0 +1,26 @@
+meta {
+  name: Get Health Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/health/status
+  body: none
+  auth: none
+}
+
+docs {
+  Health check is marked @NotVersioning in HealthController, so it is
+  NOT behind the /api/v1 prefix like the other endpoints.
+}
+
+tests {
+  test("status is 200", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("message is Good", function () {
+    expect(res.body.message).to.equal("Good");
+  });
+}
