@@ -16,7 +16,7 @@ headers {
 
 body:json {
   {
-    "link": "https://example.com/some/very/long/path"
+    "link": "https://www.youtube.com/watch?v=ExMykWwLc8A&t=10s"
   }
 }
 
@@ -32,7 +32,7 @@ tests {
   test("status is 200", function () {
     expect(res.getStatus()).to.equal(200);
   });
-
+  
   test("response contains a shortened link", function () {
     expect(res.body).to.have.property("link");
     expect(res.body.link).to.match(/^https:\/\/lit\.by\/.+/);
