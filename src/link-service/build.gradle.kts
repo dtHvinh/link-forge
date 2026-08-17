@@ -7,7 +7,7 @@ plugins {
 
 group = "org.dthv.link-forge"
 version = "0.0.1-SNAPSHOT"
-description = "app"
+description = "link-service"
 
 java {
     toolchain {

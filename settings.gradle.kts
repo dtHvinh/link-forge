@@ -1,9 +1,9 @@
 rootProject.name = "link-forge"
 
-include("app")
+include("link-service")
 include("domain")
 include("utils")
 
-project(":app").projectDir = file("src/app")
+project(":link-service").projectDir = file("src/link-service")
 project(":domain").projectDir = file("src/domain")
 project(":utils").projectDir = file("src/utils")

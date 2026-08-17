@@ -17,13 +17,3 @@ fun Long.toBase62(): String {
     return sb.reverse().toString()
 }
 
-fun String.fromBase62(): Long {
-    require(isNotEmpty()) { "Cannot decode an empty string" }
-    var result = 0L
-    for (char in this) {
-        val digit = ALPHABET.indexOf(char)
-        require(digit >= 0) { "Invalid Base62 character: '$char'" }
-        result = result * BASE + digit
-    }
-    return result
-}

@@ -12,9 +12,11 @@
       <module name="app" options="-parameters" />
       <module name="app.main" options="-parameters" />
       <module name="app.test" options="-parameters" />
-      <module name="link-forge.app" options="-parameters" />
       <module name="link-forge.app.main" options="-parameters" />
       <module name="link-forge.app.test" options="-parameters" />
+      <module name="link-forge.link-service" options="-parameters" />
+      <module name="link-forge.link-service.main" options="-parameters" />
+      <module name="link-forge.link-service.test" options="-parameters" />
     </option>
   </component>
 </project>
