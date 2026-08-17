@@ -6,12 +6,12 @@ COPY gradle ./gradle
 COPY settings.gradle.kts ./
 COPY src ./src
 
-RUN chmod +x gradlew && ./gradlew --no-daemon :app:bootJar
+RUN chmod +x gradlew && ./gradlew --no-daemon :link-service:bootJar
 
 FROM eclipse-temurin:21-jre-jammy AS extract
 WORKDIR /builder
 
-COPY --from=build /workspace/src/app/build/libs/*.jar application.jar
+COPY --from=build /workspace/src/link-service/build/libs/*.jar application.jar
 RUN java -Djarmode=tools -jar application.jar extract --layers --destination extracted
 
 FROM eclipse-temurin:21-jre-jammy

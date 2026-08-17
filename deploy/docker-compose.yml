@@ -11,7 +11,7 @@ services:
       timeout: 3s
       retries: 5
 
-  app:
+  link-service:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
@@ -22,9 +22,32 @@ services:
       SPRING_DATA_REDIS_PORT: 6379
       LINK_FORGE_REDIS: redis
       LINK_FORGE_DOMAIN: lit.by
+      SPRING_RABBITMQ_HOST: broker
+      SPRING_RABBITMQ_USERNAME: admin
+      SPRING_RABBITMQ_PASSWORD: password
     depends_on:
       redis:
         condition: service_healthy
+      broker:
+        condition: service_healthy
+
+  broker:
+    image:
+      rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
 volumes:
   redis-data:
+  rabbitmq_data:

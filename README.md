@@ -919,6 +919,6 @@ mount is live. `curl localhost/actuator/health` is blocked while
 # Deployment
 
 ```docker
-docker build -f deploy/Dockerfile -t link-forge .
-docker run -p 8080:8080 link-forge
+docker build -f deploy/Dockerfile -t link-forge/link-service .
+docker run -p 8080:8080 link-forge/link-service
 ```
