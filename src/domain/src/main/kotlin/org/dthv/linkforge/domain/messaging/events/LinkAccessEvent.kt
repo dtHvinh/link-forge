@@ -1,4 +1,4 @@
-package org.dthv.linkforge.app.messaging.events
+package org.dthv.linkforge.domain.messaging.events
 
 import kotlin.time.Instant
 

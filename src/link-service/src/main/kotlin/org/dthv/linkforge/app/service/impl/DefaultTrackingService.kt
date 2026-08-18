@@ -2,8 +2,8 @@ package org.dthv.linkforge.app.service.impl
 
 import org.dthv.linkforge.app.config.TrackingConfig
 import org.dthv.linkforge.app.messaging.MessagePublisher
-import org.dthv.linkforge.app.messaging.events.LinkAccessEvent
 import org.dthv.linkforge.app.service.TrackingService
+import org.dthv.linkforge.domain.messaging.events.LinkAccessEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.AmqpException
@@ -24,7 +24,7 @@ class DefaultTrackingService(
         try {
             messagePublisher.send(
                 trackingConfig.exchange,
-                "link.access",
+                trackingConfig.routingKey,
                 LinkAccessEvent(code, originalUrl, Clock.System.now())
             )
         } catch (ex: AmqpException) {

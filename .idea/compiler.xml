@@ -17,6 +17,15 @@
       <module name="link-forge.link-service" options="-parameters" />
       <module name="link-forge.link-service.main" options="-parameters" />
       <module name="link-forge.link-service.test" options="-parameters" />
+      <module name="link-forge.tracking-service" options="-parameters" />
+      <module name="link-forge.tracking-service.main" options="-parameters" />
+      <module name="link-forge.tracking-service.test" options="-parameters" />
+      <module name="link-service" options="-parameters" />
+      <module name="link-service_main" options="-parameters" />
+      <module name="link-service_test" options="-parameters" />
+      <module name="tracking-service" options="-parameters" />
+      <module name="tracking-service_main" options="-parameters" />
+      <module name="tracking-service_test" options="-parameters" />
     </option>
   </component>
 </project>

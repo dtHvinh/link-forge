@@ -14,7 +14,7 @@ services:
   link-service:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile
+      dockerfile: src/link-service/deploy/Dockerfile
     ports:
       - "8080:8080"
     environment:
@@ -22,6 +22,22 @@ services:
       SPRING_DATA_REDIS_PORT: 6379
       LINK_FORGE_REDIS: redis
       LINK_FORGE_DOMAIN: lit.by
+      SPRING_RABBITMQ_HOST: broker
+      SPRING_RABBITMQ_USERNAME: admin
+      SPRING_RABBITMQ_PASSWORD: password
+    depends_on:
+      redis:
+        condition: service_healthy
+      broker:
+        condition: service_healthy
+
+  tracking-service:
+    build:
+      context: ..
+      dockerfile: src/tracking-service/deploy/Dockerfile
+    environment:
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
       SPRING_RABBITMQ_HOST: broker
       SPRING_RABBITMQ_USERNAME: admin
       SPRING_RABBITMQ_PASSWORD: password

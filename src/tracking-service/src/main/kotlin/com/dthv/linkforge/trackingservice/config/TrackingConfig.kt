@@ -1,4 +1,4 @@
-package org.dthv.linkforge.app.config
+package com.dthv.linkforge.trackingservice.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
